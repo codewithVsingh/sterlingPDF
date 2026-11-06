@@ -82,7 +82,7 @@ describe("fileResponseUtils", () => {
 
     test("should prefer filename* over filename when both are present", () => {
       const contentDisposition =
-        'attachment; filename="fallback.pdf"; filename*=UTF-8''merged%20file.pdf';
+        "attachment; filename=\"fallback.pdf\"; filename*=UTF-8''merged%20file.pdf";
       const filename = getFilenameFromHeaders(contentDisposition);
 
       expect(filename).toBe("merged file.pdf");
