@@ -1349,6 +1349,8 @@ public class ApplicationProperties {
         private Boolean enableDesktopInstallSlide = true;
         private boolean enableEasterEggs = true;
         private boolean enableFeedback = true;
+        private String saveMode = "replace";
+        private boolean allowUserSaveMode = true;
         private Datasource datasource;
         private boolean disableSanitize;
         private boolean stirlingOfficeConversion;

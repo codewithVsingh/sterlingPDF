@@ -82,6 +82,7 @@ function pickedUpFields(
 // In memory only, the link would die on reload.
 const DISK_LINK_FIELDS = [
   "localFilePath",
+  "localFileIsCopy",
   "isDirty",
   "diskSyncedSize",
   "diskSyncedModifiedMs",
@@ -111,6 +112,7 @@ export function inheritedSourceLink(
   if (!sourceStub.localFilePath) return {};
   return {
     localFilePath: sourceStub.localFilePath,
+    localFileIsCopy: sourceStub.localFileIsCopy,
     // Deriving the file wrote nothing to disk, so the source's baseline still
     // describes it. Without one, the next open reads the link as changed and
     // claims a false conflict.
