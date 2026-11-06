@@ -777,15 +777,15 @@ export interface MetadataRequest {
     [k: string]: string | undefined;
   };
   /**
-   * The author of the document. Omit to remove it unless keepOmitted=true.
+   * The author of the document. Omit to remove it.
    */
   author?: string;
   /**
-   * The creation date of the document (format: yyyy/MM/dd HH:mm:ss). Omit to remove it unless keepOmitted=true.
+   * The creation date of the document (format: yyyy/MM/dd HH:mm:ss). Omit to remove it.
    */
   creationDate?: string;
   /**
-   * The creator of the document. Omit to remove it unless keepOmitted=true.
+   * The creator of the document. Omit to remove it.
    */
   creator?: string;
   /**
@@ -793,31 +793,27 @@ export interface MetadataRequest {
    */
   deleteAll?: boolean;
   /**
-   * True keeps the current value of every standard field left out, instead of removing it
-   */
-  keepOmitted?: boolean;
-  /**
-   * The keywords for the document. Omit to remove it unless keepOmitted=true.
+   * The keywords for the document. Omit to remove it.
    */
   keywords?: string;
   /**
-   * The modification date of the document (format: yyyy/MM/dd HH:mm:ss). Omit to remove it unless keepOmitted=true.
+   * The modification date of the document (format: yyyy/MM/dd HH:mm:ss). Omit to remove it.
    */
   modificationDate?: string;
   /**
-   * The producer of the document. Omit to remove it unless keepOmitted=true.
+   * The producer of the document. Omit to remove it.
    */
   producer?: string;
   /**
-   * The subject of the document. Omit to remove it unless keepOmitted=true.
+   * The subject of the document. Omit to remove it.
    */
   subject?: string;
   /**
-   * The title of the document. Omit to remove it unless keepOmitted=true.
+   * The title of the document. Omit to remove it.
    */
   title?: string;
   /**
-   * The trapped status of the document. Omit to remove it unless keepOmitted=true; readers treat a missing value as Unknown.
+   * The trapped status of the document. Omit to remove it, which readers treat as Unknown.
    */
   trapped?: "True" | "False" | "Unknown";
 }
