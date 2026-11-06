@@ -71,6 +71,14 @@ vi.mock("@editor/components/fileEditor/AddFileCard", () => ({
 vi.mock("@editor/components/shared/FilePickerModal", () => ({
   default: () => null,
 }));
+vi.mock("@editor/hooks/useSaveStoredFile", () => ({
+  useSaveStoredFile: () => ({
+    saveStoredFile: vi.fn(),
+    isUnsaved: () => false,
+    targetFor: () => undefined,
+    planFor: () => undefined,
+  }),
+}));
 vi.mock("@editor/components/toast", () => ({ alert: vi.fn() }));
 vi.mock("@editor/services/exportWithPolicy", () => ({
   downloadFileWithPolicy: vi.fn(),
