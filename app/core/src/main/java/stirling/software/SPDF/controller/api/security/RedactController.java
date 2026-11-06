@@ -110,11 +110,13 @@ public class RedactController {
 
         try (PDDocument document = pdfDocumentFactory.load(file)) {
             PDPageTree allPages = document.getDocumentCatalog().getPages();
+            boolean rasterise = Boolean.TRUE.equals(request.getConvertPDFToImage());
 
             manualRedactionService.redactPages(request, document, allPages);
-            manualRedactionService.redactAreas(request.getRedactions(), document, allPages);
+            manualRedactionService.redactAreas(
+                    request.getRedactions(), document, allPages, rasterise);
 
-            if (Boolean.TRUE.equals(request.getConvertPDFToImage())) {
+            if (rasterise) {
                 try (PDDocument convertedPdf = PdfUtils.convertPdfToPdfImage(document)) {
                     return WebResponseUtils.pdfDocToWebResponse(
                             convertedPdf,
@@ -295,6 +297,7 @@ public class RedactController {
                                     request.getRedactColor(),
                                     request.getCustomPadding(),
                                     request.getConvertPDFToImage(),
+                                    false,
                                     false);
                     int matches = foundTexts.values().stream().mapToInt(List::size).sum();
                     return withMatchCount(
