@@ -185,6 +185,13 @@ export const useToolManagement = (): ToolManagementResult => {
   const { allTools: baseRegistry } = useToolRegistry();
   const { preferences } = usePreferences();
   const toolAvailability = useToolAvailability();
+  const {
+    enabled: urlToPdfEnabled,
+    loading: urlToPdfLoading,
+    error: urlToPdfError,
+  } = useEndpointEnabled("url-to-pdf");
+  const showUrlToPdf =
+    urlToPdfEnabled === true && !urlToPdfLoading && !urlToPdfError;
 
   const toolRegistry: Partial<ToolRegistry> = useMemo(() => {
     const availableToolRegistry: Partial<ToolRegistry> = {};
