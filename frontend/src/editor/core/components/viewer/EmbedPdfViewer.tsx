@@ -79,6 +79,7 @@ import { ScaleCalibrationDialog } from "@editor/components/viewer/ScaleCalibrati
 import { usePolicyFileBadges } from "@editor/hooks/usePolicyFileBadges";
 import { alert } from "@editor/components/toast";
 import { flushCommentCommits } from "@editor/components/viewer/commentCommitFlush";
+import { originalIdOf } from "@editor/services/workbenchSession";
 import { useDamagedFileRepair } from "@editor/contexts/DamagedFileRepairContext";
 
 // ──────────────────────────────────────────────────────────────────────────────
@@ -755,7 +756,7 @@ const EmbedPdfViewerContent = ({
     }
     if (currentFile && isStirlingFile(currentFile)) {
       const stub = selectors.getStirlingFileStub(currentFile.fileId);
-      return stub?.originalFileId ?? stub?.id ?? currentFile.fileId;
+      return stub ? originalIdOf(stub) : currentFile.fileId;
     }
     return currentFileId;
   }, [previewFile, currentFile, currentFileId, selectors]);
@@ -2077,6 +2078,11 @@ const EmbedPdfViewerContent = ({
               restorePending={restorePending}
               restoreRequest={restoreRequest}
               onRestoreEvent={handleRestoreEvent}
+              lastViewedPageFileId={
+                currentFile && isStirlingFile(currentFile)
+                  ? currentFileRootId
+                  : null
+              }
               pdfRenderMode={pdfRenderMode}
               file={effectiveFile.file}
               url={effectiveFile.url}
